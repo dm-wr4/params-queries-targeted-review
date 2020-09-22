@@ -1,10 +1,11 @@
 module.exports = {
   getAllTweets: async (req, res) => {
     const db = req.app.get('db')
-    //TODO ALLOW FOR A SEARCH QUERY
+    //-TODO ALLOW FOR A SEARCH QUERY
+    console.log(req.query)
+    const { search = '' } = req.query
 
-    // const searchTerm = `%${/*query*/}%`
-    const searchTerm = '%'
+    const searchTerm = `%${search}%`
 
     const tweets = await db.get_all_tweets([searchTerm])
 

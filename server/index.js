@@ -19,7 +19,6 @@ app.get('/api/users/:user_id', userCtrl.getUserById)
 app.get('/api/users/:user_id/tweets', userCtrl.getUserTweets)
 
 //* TWEET ENDPOINTS
-
 app.get('/api/tweets', tweetCtrl.getAllTweets)
 //! Drilling into a resource group
 app.get('/api/tweets/:tweet_id/comments', tweetCtrl.getTweetComments)
