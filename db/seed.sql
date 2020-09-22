@@ -1,14 +1,20 @@
 DROP TABLE IF EXISTS tweet_likes;
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS tweets;
+DROP TABLE IF EXISTS users_auth;
 DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE "users" (
   "id" serial PRIMARY KEY,
   "email" varchar(200) UNIQUE,
   "first_name" varchar(150),
-  "last_name" varchar(150),
-  "hash" text
+  "last_name" varchar(150)
+);
+
+CREATE TABLE "users_auth"(
+  id serial PRIMARY KEY,
+  users_id INT REFERENCES users(id),
+  hash TEXT
 );
 
 CREATE TABLE "tweets" (
@@ -32,56 +38,108 @@ CREATE TABLE "tweet_likes" (
   "user_id" int REFERENCES users(id)
 );
 
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Guido','Wurst','gwurst0@bloglovin.com','18SPyQN6Frq3JSwanYxuSZL86kQKyubyqw');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Ekaterina','Peotz','epeotz1@ow.ly','1K8vV3BZe746EGHJRpQWeGg2QcCfaCNWk4');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Tallie','Dunley','tdunley2@spotify.com','15aB8bK1mD5qhdHY9zvJahHU7t28YnufJh');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Byron','Fish','bfish3@indiegogo.com','1Av5wXZLspmGCFTqx6H5CX3ZVi79J4qrRo');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Mavis','Benitti','mbenitti4@pen.io','1GXDowwbYxVcUEF7YvLAtTNqXdanGdC1pb');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Gray','Pykett','gpykett5@salon.com','1HBEBf5kb8JBXqu1sz7moquDTGUd1a7c7u');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Agnesse','Clementet','aclementet6@fema.gov','19mZJDChftMZGP1whFS9iy1L4mw36Y7udR');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Anna-diana','Romagosa','aromagosa7@pinterest.com','1DzHmwduJaFi9bdWfsoMRztvkbM3bLBgNA');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Terrye','Brookson','tbrookson8@scientificamerican.com','1CHsXBa9mgVDMppbhDxZ73hLMNQPppHf3n');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Stearne','O'' Markey','somarkey9@ow.ly','16AuvLiGmNi2qBESzqW7znRrTp5kzb7dVR');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Dean','Handaside','dhandasidea@blogspot.com','15WdCsfrqi61qfVqHuDXQjJ1XTxZuNF8KK');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Inez','Matysik','imatysikb@google.it','18tDfkQ7ppV1tD7hvjWLDx1M2vqwA3tDGp');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Eartha','Pulver','epulverc@amazon.de','1Wy7rydibtypgy9DivfxbgEhybgeHnaNB');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Murvyn','Iggo','miggod@yelp.com','1LrhZq2eq2X96675nYzBUmU9XFtUEXG6Jb');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Demetria','Lamartine','dlamartinee@weebly.com','1PHUxAS594giLt1imk1AigeLEGXt2wWzGu');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Yolanthe','Jelliman','yjellimanf@nymag.com','14hEv5uJP1aDxw1RkFZ1wmsMR6atSpQCRt');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Juana','Lezemere','jlezemereg@irs.gov','1KMRNKusSHrqxRo9rPyd1LjgkhWunFFzrz');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Kalindi','Legrand','klegrandh@wunderground.com','1CHWRv8ZSxt56hHVBca3GymbSHpb1A5jAR');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Robyn','Doody','rdoodyi@free.fr','1DCCDitePLchDA9tpNjhEYXHB7wx8xh9gU');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Berny','Orwell','borwellj@prnewswire.com','1B7QeUK42bwg3ThCVfdjEjWWiiybpXb9jd');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Kelsi','Cleeves','kcleevesk@comsenz.com','1DbhsT2FwrLQ1LyNoE9bdgsQdNcAzULWTH');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Shaina','Heersema','sheersemal@scientificamerican.com','1Gah3p3E3ZVwPoiySXuWPLa5sMbaHeAPv9');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Avram','Wasiel','awasielm@amazonaws.com','1MntxgwEfPjs2JmEn9D3E1Be1BJBB3q9W8');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Lorraine','Hughf','lhughfn@homestead.com','1Cib6RDRonwvvZhYknABnL3A9kG8SJPzY4');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Anneliese','Silliman','asillimano@over-blog.com','181bhB75cffo1RkqXfjmtCw2FN7pbBEo2b');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Livy','Sharpous','lsharpousp@instagram.com','1FpH1G2htbhHbu4zW1CMYSEGFiN467cmxH');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Ameline','O''Cassidy','aocassidyq@goo.gl','1BVcGg6qMKCqm9oXGAeK37djCNWXVyxN54');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Edie','Konzel','ekonzelr@tinyurl.com','1PK9V8Zjtkz9MQ9iAD3hFhXNEWhBJtqy3k');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Temp','Jaskiewicz','tjaskiewiczs@reverbnation.com','1HLsxbEGi1sVD6yfDdBfHk2QcKcdPQNXyQ');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Jonathon','Pocknoll','jpocknollt@addtoany.com','1MuvD6YU6R9z16gEHHfUCqD6tgbiE8cn4');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Garner','McIndrew','gmcindrewu@yahoo.co.jp','1KHR55WqfBGH3iKKqBQ1Rn5hgW5cgpHUTU');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Gilbertine','Loughney','gloughneyv@lulu.com','1HjpQRGpseRHphqYSAJ8LSvVUTtMT4ut5X');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Klarika','Durram','kdurramw@slashdot.org','1rrGHYZa6B5uB1JUXWZKukFhRkeAj8RRu');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Pooh','Marciek','pmarciekx@mediafire.com','154e7MUWQXnKRc7TujuN9YUwBHZZxfpBzZ');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Delmer','Isacoff','disacoffy@redcross.org','1NQXQfsLRc9mS2D7jcAuYSYdEmAANY5ege');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Cart','Blyde','cblydez@imgur.com','14E8bWaofA4Ch28V1jCms1hDDb4D3r1w16');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Tomas','Eddies','teddies10@eventbrite.com','19XPmgQAKtX3gXmnE5cd5WqMwvL51P1o9');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Betsey','Ewenson','bewenson11@ucoz.com','173cwVsLYux2ypgyfoUanYrNFZU9D3uXXL');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Margaretta','Shotboulte','mshotboulte12@msu.edu','15oqWhCBL9ivj9X7DSR4PD17o8hHjKQDdx');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Humphrey','Whodcoat','hwhodcoat13@hexun.com','1Pnb7Q2nAV7tn1u6ZBLnw1K6idCGpWF8vd');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Martin','Boreham','mboreham14@epa.gov','1KJjChxZkbM9uHk4NRYxNQcvu7d9DtESAz');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Dody','Darkins','ddarkins15@bbb.org','12RSe5Qys71T3yvNoBz4L69GVWRQX51ehY');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Kean','Gibby','kgibby16@digg.com','17bthRMnvkpcnn5Ugdtk2ekHaMztEx6KVm');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Shina','Strippel','sstrippel17@cbc.ca','1BQcAJc3QyjXQu5shuiLDDnpqn6wkRGH3k');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Debbi','Bratley','dbratley18@yellowpages.com','1P6XgLYocsbDGnkZDAmFmqpkda7sh3XH7C');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Borden','Stripling','bstripling19@weibo.com','19vXEWe5EnNJEG5HgvVtfFFhJmfkRAV3cj');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Gilberte','Wethers','gwethers1a@ezinearticles.com','1M1xRhT5KxAhXTA37MLg9ZcbviYk6FrsHi');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Farlee','Saville','fsaville1b@sfgate.com','1PcDkk7uc73TKCe4fBH91ALpfsQ7VjHWZN');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Evie','Bauld','ebauld1c@cpanel.net','1JAvUihRPnCzYaGf2FQtcZh52oV7xTzsHY');
-INSERT INTO users(first_name,last_name,email,hash) VALUES ('Johnna','Gymblett','jgymblett1d@google.nl','1PBCMNWpcdzW3ZXZTztg8tUSaRYxgowLrE');
+INSERT INTO users(first_name,last_name,email) VALUES ('Dominik','Mattia','dmattia0@google.com.hk');
+INSERT INTO users(first_name,last_name,email) VALUES ('Arlana','McLanaghan','amclanaghan1@nbcnews.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Gusti','Spoors','gspoors2@liveinternet.ru');
+INSERT INTO users(first_name,last_name,email) VALUES ('Micky','Gilbertson','mgilbertson3@foxnews.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Malinde','Haggarty','mhaggarty4@cam.ac.uk');
+INSERT INTO users(first_name,last_name,email) VALUES ('Filippa','Jodlkowski','fjodlkowski5@craigslist.org');
+INSERT INTO users(first_name,last_name,email) VALUES ('Putnem','Dmitrienko','pdmitrienko6@goodreads.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Rodolph','Schelle','rschelle7@netvibes.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Renaldo','Vanne','rvanne8@multiply.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Alberik','Fold','afold9@liveinternet.ru');
+INSERT INTO users(first_name,last_name,email) VALUES ('Antonina','Antonikov','aantonikova@ow.ly');
+INSERT INTO users(first_name,last_name,email) VALUES ('Corny','Clemmey','cclemmeyb@netlog.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Glenna','Pezey','gpezeyc@cam.ac.uk');
+INSERT INTO users(first_name,last_name,email) VALUES ('Perceval','Holliar','pholliard@whitehouse.gov');
+INSERT INTO users(first_name,last_name,email) VALUES ('Barty','Olle','bollee@twitter.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Essy','Creser','ecreserf@live.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Daryl','Chieze','dchiezeg@answers.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Thedric','Mitchelhill','tmitchelhillh@cbslocal.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Frederica','Lavis','flavisi@360.cn');
+INSERT INTO users(first_name,last_name,email) VALUES ('Noak','Arpe','narpej@google.co.jp');
+INSERT INTO users(first_name,last_name,email) VALUES ('Ashla','Longstreet','alongstreetk@php.net');
+INSERT INTO users(first_name,last_name,email) VALUES ('Rolf','Packman','rpackmanl@china.com.cn');
+INSERT INTO users(first_name,last_name,email) VALUES ('Jeth','Deble','jdeblem@timesonline.co.uk');
+INSERT INTO users(first_name,last_name,email) VALUES ('Rena','Brissard','rbrissardn@etsy.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Chryste','Chastan','cchastano@marriott.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Fernando','Eyes','feyesp@gravatar.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Zonnya','Crosthwaite','zcrosthwaiteq@surveymonkey.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Wait','Ebbins','webbinsr@dot.gov');
+INSERT INTO users(first_name,last_name,email) VALUES ('Verene','Birrel','vbirrels@mail.ru');
+INSERT INTO users(first_name,last_name,email) VALUES ('Wilhelmine','Rosenwald','wrosenwaldt@wordpress.org');
+INSERT INTO users(first_name,last_name,email) VALUES ('Barbabas','Ledwitch','bledwitchu@aol.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Chan','Vannucci','cvannucciv@issuu.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Antoni','Langfield','alangfieldw@t-online.de');
+INSERT INTO users(first_name,last_name,email) VALUES ('Delaney','Ace','dacex@ox.ac.uk');
+INSERT INTO users(first_name,last_name,email) VALUES ('Reade','Weston','rwestony@feedburner.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Albert','Poynton','apoyntonz@ebay.co.uk');
+INSERT INTO users(first_name,last_name,email) VALUES ('Yulma','Hilldrup','yhilldrup10@rediff.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Noach','Reay','nreay11@globo.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Anabal','Rastall','arastall12@cocolog-nifty.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Saunderson','Dautry','sdautry13@java.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Marlowe','Burnsides','mburnsides14@umn.edu');
+INSERT INTO users(first_name,last_name,email) VALUES ('Katerine','Teml','kteml15@blogspot.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Cyrille','Hassen','chassen16@opera.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Cameron','Clery','cclery17@columbia.edu');
+INSERT INTO users(first_name,last_name,email) VALUES ('Cyndie','Burcombe','cburcombe18@chicagotribune.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Stormie','Drewitt','sdrewitt19@va.gov');
+INSERT INTO users(first_name,last_name,email) VALUES ('Kele','Kirk','kkirk1a@cdc.gov');
+INSERT INTO users(first_name,last_name,email) VALUES ('Bryan','Wooldridge','bwooldridge1b@ovh.net');
+INSERT INTO users(first_name,last_name,email) VALUES ('Dido','Bartali','dbartali1c@squarespace.com');
+INSERT INTO users(first_name,last_name,email) VALUES ('Harper','Holyland','hholyland1d@google.cn');
+
+INSERT INTO users_auth(users_id,hash) VALUES (1,'1BoWhDZPxmZmZHnPLBV9uop32p7E5t6XYZ');
+INSERT INTO users_auth(users_id,hash) VALUES (2,'13Ynv9JL5gtWf1rS7eVsPajaXMDek9g61G');
+INSERT INTO users_auth(users_id,hash) VALUES (3,'1BsGJ78rW1sRfQUbtcNJ1bSJX4FC2aaHrh');
+INSERT INTO users_auth(users_id,hash) VALUES (4,'1FMaUnzy65EiHqcyy2dVgJsg37tFEv3JXq');
+INSERT INTO users_auth(users_id,hash) VALUES (5,'1NVZAQB23QzathSveUFFb4taJCCDDY3SjE');
+INSERT INTO users_auth(users_id,hash) VALUES (6,'1F26dMKjt9CjMcsxiFYfMEtrXP71FU8gZG');
+INSERT INTO users_auth(users_id,hash) VALUES (7,'1M5m6BfAtgNSqpV7SKdNsUigwzt6M8qY2m');
+INSERT INTO users_auth(users_id,hash) VALUES (8,'1thMLrcEpRNVCN5gJS2vYadAjetJbJSq9');
+INSERT INTO users_auth(users_id,hash) VALUES (9,'1JfF5wPv9q5h7gjhdDmSnuycn8B9Nuxitq');
+INSERT INTO users_auth(users_id,hash) VALUES (10,'1S9HQt7VrLgjXd3UE7whcaL62XTmFHYbV');
+INSERT INTO users_auth(users_id,hash) VALUES (11,'1HfikGECxBBCNjfqCkUbFg1wpMdALmoxT7');
+INSERT INTO users_auth(users_id,hash) VALUES (12,'12PezqX7hvXmH1FxXCSvcykEPsGbQTBXYC');
+INSERT INTO users_auth(users_id,hash) VALUES (13,'1KFkhoiN1FLzGdeDu7JimMEGVqv1GKKVsn');
+INSERT INTO users_auth(users_id,hash) VALUES (14,'1CgiKuGk78fHqiar3QFJHk8XyNJAWfhPqo');
+INSERT INTO users_auth(users_id,hash) VALUES (15,'14YEnmbCSgqtx82RgUcDrE9Q3NF4gikmty');
+INSERT INTO users_auth(users_id,hash) VALUES (16,'1F34PrUkWJXFBxt2ZuLCiUjEcHL8PgQ1u3');
+INSERT INTO users_auth(users_id,hash) VALUES (17,'1Fjq3hm4tYTDfXtWDH6vhrVnBufaP5uBrN');
+INSERT INTO users_auth(users_id,hash) VALUES (18,'1D6ntcWB3DNhXfSHVBFXxxXAoUzkMU1Teo');
+INSERT INTO users_auth(users_id,hash) VALUES (19,'1L1bW7bRFaTpPAVHtLdAFnMtmuCyYCRtTu');
+INSERT INTO users_auth(users_id,hash) VALUES (20,'17PMUJHcHiNc3LfthtWassuUq2fcQv2XVq');
+INSERT INTO users_auth(users_id,hash) VALUES (21,'1554riTaubFovYnnqxuBYd6thmV2Zd1ffP');
+INSERT INTO users_auth(users_id,hash) VALUES (22,'1DR9tDdGrDQJCSewRkd3Xcoee5fPJs6jEB');
+INSERT INTO users_auth(users_id,hash) VALUES (23,'18R8gbNbLbbBEvFEW7ShfGiz9L57zab5WF');
+INSERT INTO users_auth(users_id,hash) VALUES (24,'13e9kbNgkue8YQkrAM9Ua2S8sdCszoy7Yd');
+INSERT INTO users_auth(users_id,hash) VALUES (25,'1PgKyWUPSqaP7roUbUH3mJV2q6ZkYuTM1W');
+INSERT INTO users_auth(users_id,hash) VALUES (26,'1Eq1HJKqQN2sUdLeeKXvQVBPQoVTT7Ab5y');
+INSERT INTO users_auth(users_id,hash) VALUES (27,'135V2xTkuT4F4mviwZKbN2N3tWLQpsAMuq');
+INSERT INTO users_auth(users_id,hash) VALUES (28,'1DPJbkgS5JBdhoqWWqxMyQxFMjFJK15a8F');
+INSERT INTO users_auth(users_id,hash) VALUES (29,'16FPyxPtbuELctoQ5sCSPRY4v3mK6HTS8T');
+INSERT INTO users_auth(users_id,hash) VALUES (30,'17aBBCU28ez3aXtMLhKaNN3RWyRELoSfAS');
+INSERT INTO users_auth(users_id,hash) VALUES (31,'1H7CgWei4LEQU3ehJqtm8xSV3fTBrBXPBF');
+INSERT INTO users_auth(users_id,hash) VALUES (32,'1HqE45p4etWV9DkB9VU1TSQz4wbnZe4Nh2');
+INSERT INTO users_auth(users_id,hash) VALUES (33,'12Z9vqRrof5kyzhtt3pLXvkuEsyEJxBfpY');
+INSERT INTO users_auth(users_id,hash) VALUES (34,'1H7TkRVbrzXyxQWHaLdv8F9WeJBD1d8ejT');
+INSERT INTO users_auth(users_id,hash) VALUES (35,'15pY1X57hVhHQEhTuqoaGkGXoXKkiV2bqe');
+INSERT INTO users_auth(users_id,hash) VALUES (36,'1DasUnhwUNVK4u9zTum8EFmzD2chVG6WeS');
+INSERT INTO users_auth(users_id,hash) VALUES (37,'1CC4maMaSKcfB2biFLy38XAuCzhfXLRkML');
+INSERT INTO users_auth(users_id,hash) VALUES (38,'1BWUCWuLfSCMrAfAbxPPwjDXqwkrYXjh3L');
+INSERT INTO users_auth(users_id,hash) VALUES (39,'1KinFjtVhFrkr3JBXKVGDjFYuh3HsoRE1c');
+INSERT INTO users_auth(users_id,hash) VALUES (40,'14Rn8eYykcg2RtAw31yicSxyDtXy33eXjT');
+INSERT INTO users_auth(users_id,hash) VALUES (41,'1Eoe6uf9UBsE2TLBZuXmCqRQx3sqmxizZW');
+INSERT INTO users_auth(users_id,hash) VALUES (42,'14AqxWFBmCox7yyLkxWJZEtkWhrk5yRbDj');
+INSERT INTO users_auth(users_id,hash) VALUES (43,'1KhqdfyF8s2PZCqy9ikFBwThrEptxHeDXs');
+INSERT INTO users_auth(users_id,hash) VALUES (44,'1HEJEXNQqrAdEKh7vLRJJ6Ny94Qk4Ho5be');
+INSERT INTO users_auth(users_id,hash) VALUES (45,'1LspZ8jZssA48Nmf8meLtTuKEK4aEMZH7J');
+INSERT INTO users_auth(users_id,hash) VALUES (46,'14wAXh7cgV15cniX3ZHhHPHWoiBDmmoin1');
+INSERT INTO users_auth(users_id,hash) VALUES (47,'1Dkt3rCbqguaohqy6kh1W9z6qtM7q3i6G8');
+INSERT INTO users_auth(users_id,hash) VALUES (48,'13gKigiUR9VFhpZh5Pro578rRY9PWWL37f');
+INSERT INTO users_auth(users_id,hash) VALUES (49,'19p8uaUG9y88oBW4ETViSmkbLfiPpwHhPr');
+INSERT INTO users_auth(users_id,hash) VALUES (50,'161rKJHdZCoxhXpdxmzZohRgS2GVA2U177');
+
 
 INSERT INTO tweets(author_id,title,body,image_url) VALUES (47,'Fix San','Cross-platform composite instruction set','http://dummyimage.com/129x131.jpg/cc0000/ffffff');
 INSERT INTO tweets(author_id,title,body,image_url) VALUES (10,'Cardguard','Innovative 5th generation structure','http://dummyimage.com/207x138.jpg/ff4444/ffffff');
